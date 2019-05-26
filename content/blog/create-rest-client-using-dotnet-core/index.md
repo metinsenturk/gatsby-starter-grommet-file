@@ -1,7 +1,7 @@
 ---
 title: Create a REST client using .NET Core
 description: This tutorial teaches you a number of features in .NET Core and the C# language.
-date: 03/06/2017
+date: "2017-02-14"
 ms.assetid: 51033ce2-7a53-4cdd-966d-9da15c8204d2
 tags: ["animals", "Chicago", "zoos"]
 ---

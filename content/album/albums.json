@@ -6,8 +6,8 @@
         "imagesPath": "sample-album-1",
         "author": "Metin S",
         "slug": "/sample-album-1/",
-        "created": "2016.11.24",
-        "updated": "2016.11.24"
+        "created": "2016-11-24",
+        "updated": "2016-11-24"
     },
     {
         "title": "Second Gallery",
@@ -16,8 +16,8 @@
         "imagesPath": "sample-album-2",
         "author": "Metin S",
         "slug": "/sample-album-2/",
-        "created": "2018.09.04",
-        "updated": "2018.09.14"
+        "created": "2018-09-04",
+        "updated": "2018-09-14"
     },
     {
         "title": "Third Gallery",
@@ -26,7 +26,7 @@
         "imagesPath": "sample-album-3",
         "author": "Metin S",
         "slug": "/sample-album-3/",
-        "created": "2019.03.16",
-        "updated": "2019.10.04"
+        "created": "2019-03-16",
+        "updated": "2019-10-14"
     }
 ]

@@ -74,7 +74,7 @@ query albumListQuery($skip: Int!, $limit: Int!) {
           title
           description
           slug
-          created
+          created (formatString: "dddd DD MMMM YYYY")
         }
       }
     }

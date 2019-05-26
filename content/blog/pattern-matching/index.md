@@ -1,8 +1,8 @@
 ---
 title: Pattern Matching - C# Guide
 description: Learn about pattern matching expressions in C#
-date: 04/10/2019
-cover: 'image2.jpg'
+date: "2019-04-12"
+cover: 'chris-ried-512801-unsplash.jpg'
 ms.assetid: 1e575c32-2e2b-4425-9dca-7d118f3ed15b
 ---
 

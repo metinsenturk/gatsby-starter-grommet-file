@@ -25,7 +25,7 @@ class Blog extends Component {
             <Box as="article" key={index} width="large" elevation="small">
               <CardLink to={`/blog${node.fields.slug}`}>
                 {node.frontmatter.cover !== null ? (
-                  <Box height="small" margin={{ horizontal: "xxsmall" }} border={{ side: "bottom", color: "gray" }}>
+                  <Box height="small" >
                     <Img fluid={node.frontmatter.cover.childImageSharp.fluid} />
                   </Box>
                 ) : (
@@ -33,9 +33,10 @@ class Blog extends Component {
                   )}
                 <Box pad="medium">
                   <Box direction="row" justify="between" align="center">
-                    <Heading level="5" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
+                    <Heading level="4" margin={{ vertical: "xsmall" }}>{node.frontmatter.title}</Heading>
                     <Text as="span">{node.frontmatter.date}</Text>
                   </Box>
+                  <Text>{node.timeToRead} min read</Text>
                   <Text>{node.frontmatter.description}</Text>
                 </Box>
               </CardLink>
@@ -75,10 +76,11 @@ query blogListQuery ($skip: Int!, $limit: Int!) {
     }
     edges {
       node {
+        timeToRead
         frontmatter {
           title
           description
-          date
+          date (formatString: "dddd DD MMMM YYYY")
           cover {
             childImageSharp {
               fluid(maxWidth: 400, maxHeight: 250) {

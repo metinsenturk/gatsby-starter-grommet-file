@@ -1,7 +1,8 @@
 ---
 title: Working with LINQ
 description: This tutorial teaches you how to generate sequences with LINQ, write methods for use in LINQ queries, and distinguish between eager and lazy evaluation.
-date: 10/29/2018
+date: "2018-10-29"
+cover: 'nicole-wolf-1339717-unsplash.jpg'
 assetid: 0db12548-82cb-4903-ac88-13103d70aa77
 ---
 
@@ -31,7 +32,7 @@ You’ll need to setup your machine to run .NET core. You can find the installat
 
 The first step is to create a new application. Open a command prompt and create a new directory for your application. Make that the current directory. Type the command `dotnet new console` at the command prompt. This creates the starter files for a basic "Hello World" application.
 
-If you've never used C# before, [this tutorial](console-teleprompter.md) explains the structure of a C# program. You can read that and then return here to learn more about LINQ. 
+If you've never used C# before, explains the structure of a C# program. You can read that and then return here to learn more about LINQ. 
 
 ## Creating the Data Set
 
@@ -46,7 +47,7 @@ using System.Linq;
 
 If these three lines (`using` statements) aren't at the top of the file, our program will not compile.
 
-Now that you have all of the references that you'll need, consider what constitutes a deck of cards. Commonly, a deck of playing cards has four suits, and each suit has thirteen values. Normally, you might consider creating a `Card` class right off the bat and populating a collection of `Card` objects by hand. With LINQ, you can be more concise than the usual way of dealing with creating a deck of cards. Instead of creating a `Card` class, you can create two sequences to represent suites and ranks, respectively. You'll create a really simple pair of [*iterator methods*](../iterators.md#enumeration-sources-with-iterator-methods) that will generate the ranks and suits as <xref:System.Collections.Generic.IEnumerable%601>s of strings:
+Now that you have all of the references that you'll need, consider what constitutes a deck of cards. Commonly, a deck of playing cards has four suits, and each suit has thirteen values. Normally, you might consider creating a `Card` class right off the bat and populating a collection of `Card` objects by hand. With LINQ, you can be more concise than the usual way of dealing with creating a deck of cards. Instead of creating a `Card` class, you can create two sequences to represent suites and ranks, respectively. You'll create a really simple pair of that will generate the ranks and suits as <xref:System.Collections.Generic.IEnumerable%601>s of strings:
 
 ```csharp
 // Program.cs
@@ -107,8 +108,6 @@ The compiler translates LINQ statements written with query syntax into the equiv
 
 Go ahead and run the sample you've built at this point. It will display all 52 cards in the deck. You may find it very helpful to run this sample under a debugger to observe how the `Suits()` and `Ranks()` methods execute. You can clearly see that each string in each sequence is generated only as it is needed.
 
-![Console window showing the app writing out 52 cards](./media/working-with-linq/console.png)
-
 ## Manipulating the Order
 
 Next, focus on how you're going to shuffle the cards in the deck. The first step in any good shuffle is to split the deck in two. The <xref:System.Linq.Enumerable.Take%2A> and <xref:System.Linq.Enumerable.Skip%2A> methods that are part of the LINQ APIs provide that feature for you. Place them underneath the `foreach` loop:
@@ -134,7 +133,7 @@ public static void Main(string[] args)
 
 However, there's no shuffle method to take advantage of in the standard library, so you'll have to write your own. The shuffle method you'll be creating illustrates several techniques that you'll use with LINQ-based programs, so each part of this process will be explained in steps.
 
-In order to add some functionality to how you interact with the <xref:System.Collections.Generic.IEnumerable%601> you'll get back from LINQ queries, you'll need to write some special kinds of methods called [extension methods](../../csharp/programming-guide/classes-and-structs/extension-methods.md). Briefly, an extension method is a special purpose *static method* that adds new functionality to an already-existing type without having to modify the original type you want to add functionality to.
+In order to add some functionality to how you interact with the <xref:System.Collections.Generic.IEnumerable%601> you'll get back from LINQ queries, you'll need to write some special kinds of methods called. Briefly, an extension method is a special purpose *static method* that adds new functionality to an already-existing type without having to modify the original type you want to add functionality to.
 
 Give your extension methods a new home by adding a new *static* class file to your program called `Extensions.cs`, and then start building out the first extension method: 
 
@@ -169,8 +168,6 @@ Naturally, since you split the deck into halves, you'll need to join those halve
 The <xref:System.Collections.Generic.IEnumerable%601> interface has one method: <xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A>. The object returned by <xref:System.Collections.Generic.IEnumerable%601.GetEnumerator%2A> has a method to move to the next element, and a property that retrieves the current element in the sequence. You will use those two members to enumerate the collection and return the elements. This Interleave method will be an iterator method, so instead of building a collection and returning the collection, you'll use the `yield return` syntax shown above.
 
 Here's the implementation of that method:
-
-[!CODE-csharp[InterleaveSequenceWith](../../../samples/csharp/getting-started/console-linq/extensions.cs?name=snippet1)]
 
 Now that you've written this method, go back to the `Main` method and shuffle the deck once:
 

@@ -1,10 +1,10 @@
 ---
 title: Introduction to C# - interactive tutorials
 description: Learn C# in your browser, and get started with your own development environment
-date: 01/30/2018
+date: "2018-05-03"
 ms.custom: mvc
-created: 01/30/2018
-updated: 01/30/2018
+created: "2018-01-14"
+updated: "2018-01-20"
 tags: ["csharp", "gatsby", "tea"]
 ---
 # Introduction to C# #

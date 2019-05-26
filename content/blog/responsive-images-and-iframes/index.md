@@ -1,6 +1,6 @@
 ---
 title: "Responsive Images and iFrames"
-date: "01/02/2017"
+date: "2017-08-02"
 draft: false
 author: Jay Gatsby
 description: "You aren't just limited to markdown image tags either. You can either use

@@ -1,7 +1,7 @@
 ---
 title: About me
 description: This tutorial teaches you how to generate sequences with LINQ, write methods for use in LINQ queries, and distinguish between eager and lazy evaluation.
-date: 10/29/2018
+date: "2018-10-10"
 assetid: 0db12548-82cb-4903-ac88-13103d70aa77
 cover: './test.jpg'
 ---
