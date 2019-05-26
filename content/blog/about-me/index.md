@@ -6,25 +6,7 @@ assetid: 0db12548-82cb-4903-ac88-13103d70aa77
 cover: './test.jpg'
 ---
 
-## gif test 1
-<iframe src="https://giphy.com/embed/7eAvzJ0SBBzHy" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
-
-## iframe test
-<iframe width="560" height="315" src="https://www.youtube.com/embed/T272LJ5026M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-```md
 ![Gif Test](giphy.webp)
-```
-## image test 2
-![Cover2](./test-1.jpeg)
-
-## code example
-
-``` python
-import pandas as pd
-df = pd.readcsv('')
-df.head()
-```
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et blandit dolor. Suspendisse non felis eget erat eleifend vehicula. Phasellus non dapibus lorem. Proin facilisis varius est, vel dignissim lacus fringilla eu. Curabitur viverra semper ante eu accumsan. Etiam vel purus in est mollis fermentum. Sed sem enim, efficitur a vehicula at, gravida in nulla. Etiam tempor id orci vitae elementum. Maecenas non volutpat libero. Phasellus sit amet sodales neque.
 

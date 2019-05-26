@@ -5,9 +5,9 @@ import { Heading, Box, Text, Paragraph } from 'grommet'
 // import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
 
-export default ({ data }) => {
+export default ({data}) => {
+  console.log(data)
   const about = data.about.edges[0].node
-  //console.log(about)
 
   // eslint-disable-next-line
   const overrides = {
@@ -56,7 +56,7 @@ query {
               cover {
                 childImageSharp {
                   fluid {
-                    ...GatsbyImageSharpFluid
+                    ...GatsbyImageSharpFluid_withWebp
                   }
                 }
               }
