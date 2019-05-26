@@ -20,12 +20,10 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
-  const blogPostTemplate = path.resolve(`./src/templates/blog-post.js`)
-  const albumPostTemplate = path.resolve('./src/templates/album-post.js')
 
   return graphql(`
   {
-    posts: allMarkdownRemark {
+    posts: allMarkdownRemark(sort: {fields: [frontmatter___date], order: DESC}) {
       edges {
         node {
           fields {
@@ -34,7 +32,7 @@ exports.createPages = ({ actions, graphql }) => {
         }
       }
     }
-    albums: allAlbumsJson {
+    albums: allAlbumsJson(sort: {fields: [created], order: DESC}) {
       edges {
         node {
           slug
@@ -45,16 +43,16 @@ exports.createPages = ({ actions, graphql }) => {
   `).then(result => {
     if (result.errors) {
       return Promise.reject(result.errors)
-    }    
+    }
 
     // creating dynamic pages for blog posts
     const posts = result.data.posts.edges
     posts.forEach((post, index) => {
-      const previous = index === posts.length - 1 ? null : posts[index + 1].node
-      const next = index === 0 ? null : posts[index - 1].node
+      const previous = index === posts.length - 1 ? null : posts[index + 1].node;
+      const next = index === 0 ? null : posts[index - 1].node;
       createPage({
         path: `blog${post.node.fields.slug}`,
-        component: blogPostTemplate,
+        component: path.resolve(`./src/templates/blog-post.js`),
         context: { slug: post.node.fields.slug, previous, next },
       })
     })
@@ -77,11 +75,29 @@ exports.createPages = ({ actions, graphql }) => {
 
     // creating dynamic pages for album posts
     const albums = result.data.albums.edges
-    albums.forEach(({ node }) => {
+    albums.forEach((album, index) => {
+      const previous = index === albums.length - 1 ? null : albums[index + 1].node;
+      const next = index === 0 ? null : albums[index - 1].node;
       createPage({
-        path: `album${node.slug}`,
-        component: albumPostTemplate,
-        context: { slug: node.slug, relativeDirectory: node.slug.replace(/[/]/g, '') },
+        path: `album${album.node.slug}`,
+        component: path.resolve('./src/templates/album-post.js'),
+        context: { slug: album.node.slug, relativeDirectory: album.node.slug.replace(/[/]/g, ''), previous, next },
+      })
+    })
+
+    // creating dynamic pagination for album posts
+    const albumsPerPage = 5
+    const numPages2 = Math.ceil(albums.length / albumsPerPage)
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `album` : `album/${i + 1}`,
+        component: path.resolve("./src/templates/album-list.js"),
+        context: {
+          limit: albumsPerPage,
+          skip: i * albumsPerPage,
+          numPages2,
+          currentPage: i + 1,
+        },
       })
     })
   })

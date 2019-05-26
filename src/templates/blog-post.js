@@ -5,18 +5,19 @@ import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
+import PreviousNext from '../components/pagination/prevnext';
 
-export default ({ data }) => {
-  // console.log(data)
+export default ({ data, pageContext }) => {
   const { siteUrl, social } = data.site.siteMetadata
-  const { frontmatter, html, fields } = data.markdownRemark
+  const { frontmatter, html, fields, wordCount } = data.markdownRemark
   const url = siteUrl + '/blog/' + fields.slug.split('/')[1] + '/'
+  const pathname = "/blog/"
 
   // eslint-disable-next-line 
   const overrides = {
     p: {
       // component: Paragraph,
-      props: { size: "medium"} 
+      props: { size: "medium" }
     },
     pre: {
       props: { size: "medium" }
@@ -27,7 +28,7 @@ export default ({ data }) => {
     <>
       <SEO
         article={true}
-        pathname="/blog/"
+        pathname={pathname}
         title={frontmatter.title}
         desc={frontmatter.description}
         node={{
@@ -39,11 +40,11 @@ export default ({ data }) => {
       <Box basis="large">
         <ResponsiveContext.Consumer>
           {(size) => {
-            let pad = (size === 'small' || size === 'xsmall') ? "large" : "xsmall"
+            let pad = (size === 'small' || size === 'xsmall') ? "large" : "xsmall";
             return (
               <Box pad={{ vertical: pad, horizontal: "xsmall" }} justify="between" align="center" direction="row">
                 <ShareVia url={url} title={frontmatter.title} excerpt={frontmatter.excerpt} hashtags={['gatsby', 'sd']} via={social.twitter} />
-                <InternalLink to='/blog/'>
+                <InternalLink to={`/blog/`}>
                   <Anchor as="span" icon={<Previous />} label="Back" />
                 </InternalLink>
               </Box>
@@ -53,20 +54,23 @@ export default ({ data }) => {
         {/** TODO: temp solution to show footer, article does not fit its contents on mobile. */}
         <Box as="article" elevation="xsmall" overflow="auto" pad={{ horizontal: "medium", vertical: "xsmall" }}>
           <Heading>{frontmatter.title}</Heading>
+          <Box direction="row" gap="xsmall">
+            <Text>Written at {frontmatter.date}, </Text>
+            <Text>{wordCount.paragraphs} paragraphs, </Text>
+            <Text>{wordCount.sentences} sentences, </Text>
+            <Text>{wordCount.words} words.</Text>
+          </Box>
           <Paragraph>{frontmatter.description}</Paragraph>
-          <Text>{frontmatter.date}</Text>
           <br />
-          <h1 id="test1">{frontmatter.title}</h1>
-          <p id="test2">{frontmatter.description}</p>
-          <span id="test3">{frontmatter.date}</span>
-          <div
-          style={{ maxWidth: 'auto' }}
-                dangerouslySetInnerHTML={{
-                  __html: html,
-                }}
-              />
+          <Box
+            style={{ maxWidth: 'auto' }}
+            dangerouslySetInnerHTML={{
+              __html: html,
+            }}
+          />
           {/** <Markdown overrides /> does not align well the code. Temporarily setting html will do the work. */}
         </Box>
+        <PreviousNext pageContext={pageContext} pathname={pathname} />
       </Box>
     </>
   )

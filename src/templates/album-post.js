@@ -6,8 +6,9 @@ import { Box, Heading, Text, Anchor, ResponsiveContext } from "grommet"
 import { Previous } from "grommet-icons"
 import ShareVia from '../components/share/share'
 import { InternalLink } from '../components/internal/internal'
+import SEO from '../components/seo/seo';
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
   const {
     id,
     title,
@@ -20,6 +21,7 @@ export default ({ data }) => {
   const images = data.images.edges
   const { siteUrl, social } = data.site.siteMetadata
   const url = siteUrl + '/album/' + slug.split('/')[1] + '/'
+  const pathname = "/album/"
 
   const photos = []
   images.map(({ node }, index) => photos.push({
@@ -31,6 +33,17 @@ export default ({ data }) => {
 
   return (
     <>
+      <SEO
+        article={false}
+        pathname={pathname}
+        title={title}
+        desc={description}
+        node={{
+          url: url,
+          title: title,
+          created: created,
+          updated: updated
+        }} />
       <Box basis="large">
         <ResponsiveContext.Consumer>
           {(size) => {

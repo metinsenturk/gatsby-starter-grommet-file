@@ -11,11 +11,12 @@ class Blog extends Component {
     const meta = this.props.data.site.siteMetadata.metaBlog
     const posts = this.props.data.allMarkdownRemark.edges
     const pageInfo = this.props.data.allMarkdownRemark.pageInfo
+    const pathname = "/blog/"
     
     return (
       <>
         <SEO
-          pathname="/blog/"
+          pathname={pathname}
           title={meta.title}
           desc={meta.description}
         />
@@ -40,7 +41,7 @@ class Blog extends Component {
               </CardLink>
             </Box>
           ))}          
-          <Pagination pageInfo={pageInfo} />
+          <Pagination pageInfo={pageInfo} pathname={pathname} />
         </Box>
       </>
     )

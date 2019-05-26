@@ -13,6 +13,11 @@ const ITEMS = [
   },
   {
     active: true,
+    label: "About",
+    path: "/about/"
+  },
+  {
+    active: true,
     label: "Blog",
     path: "/blog/"
   },
