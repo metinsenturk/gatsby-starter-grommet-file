@@ -22,24 +22,24 @@ PS: I am really bad at UI elements. I will be happy get any suggestions/ tutoria
 
 ### Version 0.0.2 - Building The Basics (Upcoming)
 
-- [ ] blog, gallery pages
-- [ ] Creating Nav
-- [ ] blog-detail, gallery-detail pages
+- [x] blog, gallery pages
+- [x] Creating Nav
+- [x] blog-detail, gallery-detail pages
 - [x] dynamically creating pages
 - [ ] tags and categories
-- [ ] Helmet on every page
-- [ ] Many more..
+- [x] Helmet on every page
+- [x] Many more..
 
 ### Version 0.0.3 - Shaping the UI (Future)
 
-- [ ] UI fix for gallery detail
-- [ ] UI fix for blog detail
-- [ ] UI fix for blog and gallery item lists
+- [x] UI fix for gallery detail
+- [x] UI fix for blog detail
+- [x] UI fix for blog and gallery item lists
 
 ### Version 0.0.4 - Networking (Future)
 
-- [ ] SEO Optimization tags
-- [ ] Google analyics implementation
+- [x] SEO Optimization tags
+- [x] Google analyics implementation
 
 ## Measuring the Performance
 

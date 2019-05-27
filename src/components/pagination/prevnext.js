@@ -5,7 +5,7 @@ import { Previous, Next } from "grommet-icons"
 
 const PreviousNext = (props) => {
     const pageContext = props.pageContext;
-    console.log(pageContext)
+    
     return (
         <Box pad={{ vertical: "small", horizontal: "small" }} justify="between" align="center" direction="row">
             {pageContext.previous ? (

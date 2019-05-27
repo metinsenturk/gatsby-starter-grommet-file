@@ -1,12 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
 import { Heading, Box, Text, Paragraph } from 'grommet'
 // import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
+// eslint-disable-next-line
+import Img from 'gatsby-image'
 
-export default ({data}) => {
-  console.log(data)
+export default ({ data }) => {
   const about = data.about.edges[0].node
 
   // eslint-disable-next-line
@@ -24,18 +24,20 @@ export default ({data}) => {
         desc=""
       />
       <Box basis="large">
-        <Box pad={{ horizontal: "xsmall" }}>
-          <Img fluid={about.frontmatter.cover.childImageSharp.fluid} />
-        </Box>
-        <Box as="article" gap="medium" elevation="xsmall" pad={{ horizontal: "medium", vertical: "xsmall" }}>
-          <Heading> {about.frontmatter.title}</Heading>
-          <Text>{about.frontmatter.description}</Text>
-          <div
-            style={{ maxWidth: 'auto' }}
-            dangerouslySetInnerHTML={{
-              __html: about.html,
-            }}
-          />
+        <Box gap="medium" elevation="xsmall" >
+          {/*<Box >
+            <Img fluid={about.frontmatter.cover.childImageSharp.fluid} />
+          </Box>*/}
+          <Box pad={{ horizontal: "medium", vertical: "xsmall" }}>
+            <Heading> {about.frontmatter.title}</Heading>            
+            <Box
+            as="article"
+              style={{ maxWidth: 'auto' }}
+              dangerouslySetInnerHTML={{
+                __html: about.html,
+              }}
+            />
+          </Box>
         </Box>
       </Box>
     </>
