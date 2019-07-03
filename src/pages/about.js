@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { Heading, Box, Text, Paragraph } from 'grommet'
+import { Heading, Box, Paragraph } from 'grommet'
 // import { Image } from 'grommet'
 import SEO from '../components/seo/seo';
 // eslint-disable-next-line

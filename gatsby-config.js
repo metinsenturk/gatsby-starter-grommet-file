@@ -54,7 +54,7 @@ module.exports = {
       title: 'Hi There.',
       description: 'Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
     },
-    headercolor: 'accent-4' // neutral-1, status-1, etc.
+    headerColor: 'accent-4', // neutral-1, status-1, etc.
   },
   plugins: [
     'gatsby-plugin-react-helmet',
