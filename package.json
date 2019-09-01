@@ -1,7 +1,7 @@
 {
-  "name": "metinsenturk.github.io",
-  "description": "Personal Website",
-  "version": "0.0.8",
+  "name": "gatsby-starter-grommet-file",
+  "description": "Gatsby grommet starter with Grommet V2 and Markdown Files.",
+  "version": "1.0.0",
   "author": "Metin Senturk",
   "dependencies": {
     "gatsby": "^2.5.0",
@@ -36,7 +36,7 @@
     "styled-components": "^4.2.0"
   },
   "keywords": [
-    "gatsby", "grommet", "blog", "gallery", "themes"
+    "gatsby", "grommet", "blog", "gallery", "themes", "grommetv2", "gatsbyv2", "react"
   ],
   "license": "MIT",
   "scripts": {
@@ -55,6 +55,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/metinsenturk/metinsenturk.github.io.git"
+    "url": "https://github.com/metinsenturk/gatsby-starter-grommet-file"
   }
 }
