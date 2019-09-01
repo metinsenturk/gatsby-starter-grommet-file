@@ -1,62 +1,137 @@
-## 🚀 Personal Site
+# Gatsby Starter Grommet File
 
-This site is a sum of some of my albums and my writings. It is developed with Gatsby. This website is currently under development. Things I want to implement on this site at this point is uncertain. I have a roadmap that is given and regularly updated at the end of this document. The goal of this project is to use GatsbyJS to create a personal website that take advantages of a static webpage. Since Gatsby provides JAMStack development, the project will produce static generated files in the end. It has the following implementations.
+Blogging is very easy with Gatsby. Start your blog with this template within just a few steps.
 
-PS: I am really bad at UI elements. I will be happy get any suggestions/ tutorials in order to correct my website's UI designing.
+A demo of this starter is hosted in [here]().
 
-1. **Blog**
+## Features
 
-   Blog will read markdown files from blog/ directory.
+- [React](https://reactjs.org)
+- [Gatsby V2](https://www.gatsbyjs.org)
+- [Grommet V2](https://v2.grommet.io/)
+- A simple landing page, blog, and gallery pages.
+- Pagination
+- Multi theme support, light, dark, and more.
+- SEO friendly design
+    - JSON-LD for Google Breadcrumbs
+    - JSON-LD for Google Article/ Websites
+    - OpenGraph, Twitter, FB meta tags
+- Google Analytics
+- Robots.txt generation
+- RSS Feed
+- Manifest support
+- Sitemap generation
+- Offline Support
+- Netlify form tags for site forms
+- Social share buttons with `react-share`
+- Own your content. Host your content in Markdown files.
+- Images handled by `gatsby-image` for albums and markdown files.
+- One config for all site.
+- Markdown files for your content.
 
-2. **Photography**
+## Getting Started & Configure
 
-   Galleries under gallery/ directory will be listed.
+To start, first clone the repository, then edit the the siteMetadata in `gatsby.config.js`.
 
-## Roadmap
+### Getting Started
 
-### Version 0.0.1 - Building The Basics (Current)
+To start building a blog with this template, you must first install the project using either `gatsby-cli` or `git`.
 
-- [x] creating a dev/ coming soon page
-- [x] publishing the dev
-- [x] creating development branches
+``` sh
+# install with gatsby-cli
+gatsby new grommet-file https://github.com/metinsenturk/gatsby-starter-grommet-file
 
-### Version 0.0.2 - Building The Basics (Upcoming)
+# install with git
+git clone https://github.com/metinsenturk/gatsby-starter-grommet-file grommet-file
 
-- [ ] blog, gallery pages
-- [ ] Creating Nav
-- [ ] blog-detail, gallery-detail pages
-- [ ] dynamically creating pages
-- [ ] tags and categories
-- [ ] Helmet on every page
-- [ ] Many more..
+```
 
-### Version 0.0.3 - Shaping the UI (Future)
+After downloading files. You should install the project `yarn`.
+``` sh
+# shift to the new directory
+cd grommet-file
 
-- [ ] UI fix for gallery detail
-- [ ] UI fix for blog detail
-- [ ] UI fix for blog and gallery item lists
+# install
+yarn install
+```
 
-### Version 0.0.4 - Networking (Future)
+### Development
 
-- [ ] SEO Optimization tags
-- [ ] Google analyics implementation
+For development, you can use [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/en/), depending on your choise. They both will launch `gatsby develop`. 
 
-## Measuring the Performance
+``` sh
+yarn develop 
+```
 
-Lighthouse performance metrics will be used in order to measure the site performance over the time. Reports available at src/lighthouse-reports/ directory. Reports can be via this [webpage](https://googlechrome.github.io/lighthouse/viewer/).
+### Publish
 
-To measure the site performance:
+``` sh
+yarn build
+```
 
-1. Create a build version.
+### Configure
 
-    ```sh
-    gatsby build
-    ```
+The main configuration of this site is handled by `gatsby-config.js` in `siteMetadata` object. You can control sections and general texts around the site without getting into the code. For example, to change the default theme
 
-2. Create a build version.
+``` js
+siteMetadata: {
+    pathPrefix: '/',
+    siteUrl: 'http://localhost:8000', 
+    siteLanguage: 'en',
+    author: 'Metin Senturk',
+    description: ``,
+    title: "MS",
+    metaDefault: {
+      title: 'MS',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    metaBlog: {
+      title: 'My Blog',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    metaAlbum: {
+      title: 'Albums',
+      description: '',
+      banner: 'gatsby-icon.png',
+    },
+    titleAlt: '',
+    headline: '',
+    favicon: '', 
+    shortName: '', 
+    author: 'Metin Senturk', 
+    themeColor: '#3D63AE',
+    backgroundColor: '#EBEDF2',
+    ogLanguage: 'en_US',
+    social: {
+      facebook: "MtnSntrk",
+      twitter: "machinmetosh",
+      linkedin: "metinsenturk",
+      telegram: "metinsenturk",
+      email: "metinsenturk@me.com",
+      github: "metinsenturk"
+    },
+    sourceUrl: '',
+    indexText: {
+      enabled: true,
+      picture: "random", 
+      title: 'Hi There.',
+      description: ''
+    },
+    headercolor: 'accent-4' 
+  }
+```
 
-    ```sh
-    gatsby serve
-    ```
+The following keys in the above object are used for following purposes.
 
-3. Download and save the report to the directory.
+- `metaDefault`: the content for site's general metatags.
+- `metaBlog`: meta tags for /blog pages.
+- `metaAlbum`: meta tags for /album pages
+- `indexText`: to show the text on top of the image, switch `enabled` to `true`. `picture` is retrieved from Unsplash, you can implement your own, or use a static image from Gatsby's site images, I preferred the Unplash random api. Other options are `daily`, `weekly`.
+- `headercolor`: The main/ light theme of the header color. Changing this will effect the reverse colors, and the colors of dark theme as well. Full color options are available at Grommet's [site](https://v2.grommet.io/components#Color).
+- `social`: The social usernames. This will be used in social links and share buttons. No need to use @, #, etc.
+
+## Author
+
+by [@metinsenturk](https://github.com/metinsenturk).
