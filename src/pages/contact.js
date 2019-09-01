@@ -136,7 +136,7 @@ class Contact extends Component {
                     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                    <Form ref={this.successRef} onSubmit={event => this.onSubmit(event)} name="ContactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field" action="/contact/success">
+                    <Form ref={this.successRef} onSubmit={event => this.onSubmit(event)} name="ContactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field" action="/success">
                         {/* You still need to add the hidden input with the form name to your JSX form */}
                         <input type="hidden" name="form-name" value="contact" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
