@@ -4,9 +4,9 @@ import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
-//import axios from 'axios'
-const axios = require('axios');
-const qs = require('query-string');
+
+// const axios = require('axios');
+// const qs = require('query-string');
 
 // const encode = (data) => {
 //     return Object.keys(data)
@@ -49,32 +49,32 @@ class Contact extends Component {
         this.setState({ message: event.target.value })
     }
 
-    onSubmit = (event) => {
-        //console.log(event)
-        event.preventDefault();
-        const formData = {}
-        Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
+    // onSubmit = (event) => {
+    //     //console.log(event)
+    //     event.preventDefault();
+    //     const formData = {}
+    //     Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
 
-        const axiosOptions = {
-            url: this.props.location.pathname,
-            method: "post",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: qs.stringify(formData),
-        }
+    //     const axiosOptions = {
+    //         url: this.props.location.pathname,
+    //         method: "post",
+    //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    //         data: qs.stringify(formData),
+    //     }
 
-        axios(axiosOptions)
-        .then(response => {
-            this.setState({
-                status: "success",
-            })
-            this.successRef.current.reset()
-        })
-        .catch(err =>
-            this.setState({
-                status: "failure",
-            })
-        )
-    }
+    //     axios(axiosOptions)
+    //     .then(response => {
+    //         this.setState({
+    //             status: "success",
+    //         })
+    //         this.successRef.current.reset()
+    //     })
+    //     .catch(err =>
+    //         this.setState({
+    //             status: "failure",
+    //         })
+    //     )
+    // }
 
     render() {
         const failure = () => {
@@ -136,7 +136,7 @@ class Contact extends Component {
                     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                    <Form ref={this.successRef} onSubmit={event => this.onSubmit(event)} name="ContactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field" action="/success">
+                    <Form name="ContactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
                         {/* You still need to add the hidden input with the form name to your JSX form */}
                         <input type="hidden" name="form-name" value="contact" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
