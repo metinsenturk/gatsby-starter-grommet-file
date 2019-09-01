@@ -1,8 +1,9 @@
-# Gatsby Starter Grommet lifE
+# Gatsby Starter Grommet File
 
 Blogging is very easy with Gatsby. Start your blog with this template within just a few steps.
 
 A demo of this starter is hosted in [here]().
+
 ## Features
 
 - [React](https://reactjs.org)
@@ -26,6 +27,7 @@ A demo of this starter is hosted in [here]().
 - Own your content. Host your content in Markdown files.
 - Images handled by `gatsby-image` for albums and markdown files.
 - One config for all site.
+- Markdown files for your content.
 
 ## Getting Started & Configure
 
@@ -37,13 +39,19 @@ To start building a blog with this template, you must first install the project 
 
 ``` sh
 # install with gatsby-cli
-gatsby new grommet-filE https://www.gatsbyjs.org/docs/gatsby-cli/
+gatsby new grommet-file https://github.com/metinsenturk/gatsby-starter-grommet-file
 
 # install with git
-git clone https://www.gatsbyjs.org/docs/gatsby-cli/ grommet-filE
+git clone https://github.com/metinsenturk/gatsby-starter-grommet-file grommet-file
 
-# shift to the new directory and install
-cd grommet-filE
+```
+
+After downloading files. You should install the project `yarn`.
+``` sh
+# shift to the new directory
+cd grommet-file
+
+# install
 yarn install
 ```
 
@@ -55,7 +63,8 @@ For development, you can use [npm](https://www.npmjs.com/) or [yarn](https://yar
 yarn develop 
 ```
 
-### Configure
+### Publish
+
 ``` sh
 yarn build
 ```
@@ -125,4 +134,4 @@ The following keys in the above object are used for following purposes.
 
 ## Author
 
-by [@metinsenturk]().
+by [@metinsenturk](https://github.com/metinsenturk).
