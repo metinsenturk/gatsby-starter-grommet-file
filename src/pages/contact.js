@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component } from 'react'
 import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'grommet'
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
@@ -8,12 +8,6 @@ import ReCaptcha from "react-google-recaptcha"
 
 const axios = require('axios');
 const qs = require('query-string');
-
-// const encode = (data) => {
-//     return Object.keys(data)
-//         .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-//         .join("&");
-// }
 
 /**
  * SELF NOTE: 
@@ -64,34 +58,34 @@ class Contact extends Component {
 
     onSubmit = (event) => {        
         event.preventDefault();
-        console.log(event.value)
-        console.log(event)
-        console.log(this.refs)
-
-        const formData = {}
-        Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
         
-        const form = event.target
-        const succesUrl = form.getAttribute("action")
-        console.log(formData)
-        const axiosOptions = {
-            url: this.props.location.pathname,
-            method: "post",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            data: qs.stringify(formData),
-        }
+        // console.log(event.value)
+        // console.log(event)
+        // const form = event.target
+        // const succesUrl = form.getAttribute("action")
 
-        axios(axiosOptions)
-            .then(response => {
-                this.setState({
-                    status: "success",
+        if (this.state.expired == false) {
+            const axiosOptions = {
+                url: this.props.location.pathname,
+                method: "post",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                data: qs.stringify(this.state),
+            }
+    
+            axios(axiosOptions)
+                .then(response => {
+                    console.log('success:: ', response)
+                    this.setState({
+                        status: "success",
+                    })
                 })
-            })
-            .catch(err =>
-                this.setState({
-                    status: "failure",
+                .catch(err => {
+                    console.log('error:: ', err)
+                    this.setState({
+                        status: "failure",
+                    })
                 })
-            )
+        }
     }
 
     render() {
@@ -155,14 +149,16 @@ class Contact extends Component {
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
                     <Form
-                        // onSubmit={this.onSubmit}
-                        // action="/contact/success/"
+                        onSubmit={this.onSubmit}
+                        action="/contact/"
                         name="ContactForm"
                         method="post"
                         data-netlify="true"
                         data-netlify-recaptcha="true"
                         data-netlify-honeypot="bot-field">
-
+                        
+                        <input type="hidden" name="bot-field" />
+                        <input type="hidden" name="form-name" value="ContactForm_Hidden" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
