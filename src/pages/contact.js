@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'grommet'
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
+import ReCaptcha from "react-google-recaptcha"
 
-// const axios = require('axios');
-// const qs = require('query-string');
+const axios = require('axios');
+const qs = require('query-string');
 
 // const encode = (data) => {
 //     return Object.keys(data)
@@ -23,13 +24,16 @@ import { InternalLink } from '../components/internal/internal'
 class Contact extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             status: "ready", /* ready || success || failure */
             error: "",
             name: "",
             select: "Discussion",
             email: "",
-            message: ""
+            message: "",
+            recaptcha: null,
+            expired: false
         }
     }
 
@@ -49,32 +53,46 @@ class Contact extends Component {
         this.setState({ message: event.target.value })
     }
 
-    // onSubmit = (event) => {
-    //     //console.log(event)
-    //     event.preventDefault();
-    //     const formData = {}
-    //     Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
+    handleRecaptcha = (value) => {
+        console.log(value)
+        this.setState({recaptcha: value})
+        if (value === null) {
+            console.log('expired!')
+            this.setState({ expired: true })
+        };
+    }
 
-    //     const axiosOptions = {
-    //         url: this.props.location.pathname,
-    //         method: "post",
-    //         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //         data: qs.stringify(formData),
-    //     }
+    onSubmit = (event) => {        
+        event.preventDefault();
+        console.log(event.value)
+        console.log(event)
+        console.log(this.refs)
 
-    //     axios(axiosOptions)
-    //     .then(response => {
-    //         this.setState({
-    //             status: "success",
-    //         })
-    //         this.successRef.current.reset()
-    //     })
-    //     .catch(err =>
-    //         this.setState({
-    //             status: "failure",
-    //         })
-    //     )
-    // }
+        const formData = {}
+        Object.keys(this.refs).map(key => (formData[key] = this.refs[key].value))
+        
+        const form = event.target
+        const succesUrl = form.getAttribute("action")
+        console.log(formData)
+        const axiosOptions = {
+            url: this.props.location.pathname,
+            method: "post",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            data: qs.stringify(formData),
+        }
+
+        axios(axiosOptions)
+            .then(response => {
+                this.setState({
+                    status: "success",
+                })
+            })
+            .catch(err =>
+                this.setState({
+                    status: "failure",
+                })
+            )
+    }
 
     render() {
         const failure = () => {
@@ -136,13 +154,20 @@ class Contact extends Component {
                     <Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
-                    <Form name="ContactForm" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
-                        {/* You still need to add the hidden input with the form name to your JSX form */}
-                        <input type="hidden" name="form-name" value="contact" />
+                    <Form
+                        // onSubmit={this.onSubmit}
+                        // action="/contact/success/"
+                        name="ContactForm"
+                        method="post"
+                        data-netlify="true"
+                        data-netlify-recaptcha="true"
+                        data-netlify-honeypot="bot-field">
+
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
                         <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
+                        <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} />
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
                             <Button label="Send" type="submit" primary={true}></Button>
                         </Box>
