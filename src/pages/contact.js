@@ -50,7 +50,7 @@ class Contact extends Component {
     }
 
     onSubmit = (event) => {        
-        event.preventDefault();
+        
 
         if (this.state.expired === false) {
             const form = event.target
@@ -82,6 +82,7 @@ class Contact extends Component {
                     })
                 })
         }
+        event.preventDefault();
     }
 
     render() {
@@ -146,7 +147,7 @@ class Contact extends Component {
                     </Text>
                     <Form
                         onSubmit={this.onSubmit}
-                        action="/contact/"
+                        action="/contact"
                         name="ContactForm"
                         method="post"
                         data-netlify="true"
