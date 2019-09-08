@@ -16,7 +16,7 @@ class Contact extends Component {
             status: "ready", /* ready || success || failure */
             error: "",
             name: "",
-            select: "Discussion",
+            reason: "Discussion",
             email: "",
             message: "",
             recaptcha: null,
@@ -28,8 +28,8 @@ class Contact extends Component {
         this.setState({ name: event.target.value })
     }
 
-    onSelectChange = (event) => {
-        this.setState({ select: event.value })
+    onReasonChange = (event) => {
+        this.setState({ reason: event.value })
     }
 
     onEmailChange = (event) => {
@@ -54,8 +54,8 @@ class Contact extends Component {
         if (this.state.expired === false) {
             const form = event.target
             const data = qs.stringify({
-                'form-name' : form.getAttribute("name"),
-                'g-recaptcha-response' : this.state.recaptcha,
+                "form-name" : form.getAttribute("name"),
+                "g-recaptcha-response" : this.state.recaptcha,
                 ...this.state
             })
 
@@ -133,8 +133,8 @@ class Contact extends Component {
         }
 
         const success = () => {
-            var { status, name, select, email, message } = this.state
-            const CONTENT = `\`\`\`json \n${JSON.stringify({ status, name, select, email, message }, null, 2)}\`\`\``
+            var { status, name, reason, email, message } = this.state
+            const CONTENT = `\`\`\`json \n${JSON.stringify({ status, name, reason, email, message }, null, 2)}\`\`\``
 
             return (
                 <Box basis="large" fill={true}>
@@ -160,7 +160,7 @@ class Contact extends Component {
         const ready = () => {
             // eslint-disable-next-line
             const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            const selectOptions = ['Hire', 'Discussion', 'Thanks', 'Complaint', 'No Reason']
+            const reasonOptions = ['Hire', 'Discussion', 'Thanks', 'Complaint', 'No Reason']
             return (
                 <Box elevation="small" pad="medium" gap="medium" fill={true}>
                     <Heading>Contact with me.</Heading>
@@ -169,7 +169,7 @@ class Contact extends Component {
                     </Text>
                     <Form
                         onSubmit={this.onSubmit}
-                        action="/contact"
+                        // action="/contact"
                         name="ContactForm3"
                         method="POST"
                         data-netlify="true"
@@ -181,7 +181,7 @@ class Contact extends Component {
                         <input type="hidden" name="form-name" value="ContactForm3" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
-                        <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
+                        <FormField name="reason" label="Why?" component={Select} value={this.state.reason} options={reasonOptions} onChange={this.onReasonChange} />
                         <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
                         <div data-netlify-recaptcha="true"></div>
                         {/* <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} /> */}
