@@ -67,8 +67,8 @@ class Contact extends Component {
                 data: data,
             }
             
-            console.log(event.value)
             console.log(form.getAttribute("name"))
+            console.log(event.value)
             console.log(axiosOptions)
             
             // trial 1
@@ -173,10 +173,11 @@ class Contact extends Component {
                         name="ContactForm3"
                         method="POST"
                         data-netlify="true"
-                        data-netlify-recaptcha="true"
-                        data-netlify-honeypot="bot-field">
+                        // data-netlify-recaptcha="true"
+                        // data-netlify-honeypot="bot-field"
+                        >
                         
-                        <input type="hidden" name="bot-field" />
+                        {/* <input type="hidden" name="bot-field" /> */}
                         <input type="hidden" name="form-name" value="ContactForm3" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
