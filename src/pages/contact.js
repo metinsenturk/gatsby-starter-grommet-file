@@ -55,7 +55,8 @@ class Contact extends Component {
         if (this.state.expired === false) {
             const form = event.target
             const axiosOptions = {
-                url: this.props.location.pathname,
+                // url: this.props.location.pathname,
+                url: "/",
                 method: "post",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 data: qs.stringify({
@@ -149,7 +150,7 @@ class Contact extends Component {
                         onSubmit={this.onSubmit}
                         action="/contact"
                         name="ContactForm"
-                        method="post"
+                        method="POST"
                         data-netlify="true"
                         data-netlify-recaptcha="true"
                         data-netlify-honeypot="bot-field">
