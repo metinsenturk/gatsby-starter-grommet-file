@@ -4,7 +4,7 @@ import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
-// import ReCaptcha from "react-google-recaptcha"
+import ReCaptcha from "react-google-recaptcha"
 
 const axios = require('axios');
 const qs = require('query-string');
@@ -85,25 +85,6 @@ class Contact extends Component {
                         status: "failure",
                     })
                 })
-            
-            // trial 2
-            fetch(form.getAttribute("action"), {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: data
-            })
-            .then((response) => {
-                console.log('success:: ', response)
-                this.setState({
-                    status: "success",
-                })
-            })
-            .catch(error => {
-                console.log('error:: ', error)
-                this.setState({
-                    status: "failure",
-                })
-            });
         }
     }
 
@@ -173,18 +154,18 @@ class Contact extends Component {
                         name="ContactForm3"
                         method="POST"
                         data-netlify="true"
-                        // data-netlify-recaptcha="true"
-                        // data-netlify-honeypot="bot-field"
+                        data-netlify-recaptcha="true"
+                        data-netlify-honeypot="bot-field"
                         >
                         
-                        {/* <input type="hidden" name="bot-field" /> */}
+                        <input type="hidden" name="bot-field" />
                         <input type="hidden" name="form-name" value="ContactForm3" />
                         <FormField name="fullname" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.reason} options={reasonOptions} onChange={this.onReasonChange} />
                         <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
                         <div data-netlify-recaptcha="true"></div>
-                        {/* <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} /> */}
+                        <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} />
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
                             <Button label="Send" type="submit" primary={true}></Button>
                         </Box>
