@@ -61,14 +61,14 @@ class Contact extends Component {
 
             const axiosOptions = {
                 // url: this.props.location.pathname,
-                url: "/contact?no-cache=1",
+                url: form.getAttribute("action"),
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 data: data,
             }
             
             console.log(form.getAttribute("name"))
-            console.log(data)
+            console.log(form.getAttribute("action"))
             console.log(axiosOptions)
             
             // trial 1
@@ -87,7 +87,7 @@ class Contact extends Component {
                 })
             
             // trial 2
-            fetch("/contact?no-cache=1", {
+            fetch(form.getAttribute("action"), {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: data
@@ -169,7 +169,7 @@ class Contact extends Component {
                     </Text>
                     <Form
                         onSubmit={this.onSubmit}
-                        // action="/contact"
+                        action="/contact"
                         name="ContactForm3"
                         method="POST"
                         data-netlify="true"
