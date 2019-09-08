@@ -49,25 +49,29 @@ class Contact extends Component {
         };
     }
 
-    onSubmit = (event) => {        
+    onSubmit = (event) => {
+        event.preventDefault(); 
         if (this.state.expired === false) {
             const form = event.target
+            const data = qs.stringify({
+                'form-name' : form.getAttribute("name"),
+                'g-recaptcha-response' : this.state.recaptcha,
+                ...this.state
+            })
+
             const axiosOptions = {
                 // url: this.props.location.pathname,
-                url: "/?no-cache=1",
-                method: "post",
+                url: "/contact?no-cache=1",
+                method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                data: qs.stringify({
-                    'form-name' : form.getAttribute("name"),
-                    'g-recaptcha-response' : this.state.recaptcha,
-                    ...this.state
-                }),
+                data: data,
             }
             
-            console.log(form)
+            console.log(event.value)
             console.log(form.getAttribute("name"))
             console.log(axiosOptions)
-    
+            
+            // trial 1
             axios(axiosOptions)
                 .then(response => {
                     console.log('success:: ', response)
@@ -81,15 +85,12 @@ class Contact extends Component {
                         status: "failure",
                     })
                 })
-
-            fetch("/?no-cache=1", {
+            
+            // trial 2
+            fetch("/contact?no-cache=1", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: qs.stringify({
-                    'form-name' : form.getAttribute("name"),
-                    'g-recaptcha-response' : this.state.recaptcha,
-                    ...this.state
-                })
+                body: data
             })
             .then((response) => {
                 console.log('success:: ', response)
@@ -104,7 +105,6 @@ class Contact extends Component {
                 })
             });
         }
-        event.preventDefault();
     }
 
     render() {
