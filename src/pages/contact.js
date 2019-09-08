@@ -54,9 +54,9 @@ class Contact extends Component {
             const form = event.target
             const axiosOptions = {
                 // url: this.props.location.pathname,
-                url: "/",
+                url: "/?no-cache=1",
                 method: "post",
-                config : {headers: { "Content-Type": "application/x-www-form-urlencoded" }},
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 data: qs.stringify({
                     'form-name' : form.getAttribute("name"),
                     'g-recaptcha-response' : this.state.recaptcha,
@@ -82,7 +82,7 @@ class Contact extends Component {
                     })
                 })
 
-            fetch("/", {
+            fetch("/?no-cache=1", {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                 body: qs.stringify({
