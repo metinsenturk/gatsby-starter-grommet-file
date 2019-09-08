@@ -15,7 +15,7 @@ class Contact extends Component {
         this.state = {
             status: "ready", /* ready || success || failure */
             error: "",
-            name: "",
+            fullname: "",
             reason: "Discussion",
             email: "",
             message: "",
@@ -25,7 +25,7 @@ class Contact extends Component {
     }
 
     onNameChange = (event) => {
-        this.setState({ name: event.target.value })
+        this.setState({ fullname: event.target.value })
     }
 
     onReasonChange = (event) => {
@@ -56,7 +56,7 @@ class Contact extends Component {
             const data = qs.stringify({
                 "form-name" : form.getAttribute("name"),
                 "g-recaptcha-response" : this.state.recaptcha,
-                ...this.state
+                ...event.value
             })
 
             const axiosOptions = {
@@ -68,7 +68,7 @@ class Contact extends Component {
             }
             
             console.log(form.getAttribute("name"))
-            console.log(event.value)
+            console.log(data)
             console.log(axiosOptions)
             
             // trial 1
@@ -179,7 +179,7 @@ class Contact extends Component {
                         
                         {/* <input type="hidden" name="bot-field" /> */}
                         <input type="hidden" name="form-name" value="ContactForm3" />
-                        <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
+                        <FormField name="fullname" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.reason} options={reasonOptions} onChange={this.onReasonChange} />
                         <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
