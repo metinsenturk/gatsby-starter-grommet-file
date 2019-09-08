@@ -49,6 +49,32 @@ class Contact extends Component {
         };
     }
 
+    onSubmit2 = event => {
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: qs.stringify({
+                'form-name' : form.getAttribute("name"),
+                'g-recaptcha-response' : this.state.recaptcha,
+                ...this.state
+            })
+        })
+        .then(() => {
+            console.log('success:: ', response)
+            this.setState({
+                status: "success",
+            })
+        })
+        .catch(error => {
+            console.log('error:: ', error)
+            this.setState({
+                status: "failure",
+            })
+        });
+    
+          e.preventDefault();
+    }
+
     onSubmit = (event) => {        
         
 
@@ -147,16 +173,16 @@ class Contact extends Component {
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
                     <Form
-                        onSubmit={this.onSubmit}
+                        onSubmit={this.onSubmit2}
                         action="/contact"
-                        name="ContactForm"
+                        name="ContactForm2"
                         method="POST"
                         data-netlify="true"
                         data-netlify-recaptcha="true"
                         data-netlify-honeypot="bot-field">
                         
                         <input type="hidden" name="bot-field" />
-                        <input type="hidden" name="form-name" value="ContactForm" />
+                        <input type="hidden" name="form-name" value="ContactForm2" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
