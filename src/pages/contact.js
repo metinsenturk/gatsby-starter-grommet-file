@@ -49,42 +49,14 @@ class Contact extends Component {
         };
     }
 
-    onSubmit2 = event => {
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: qs.stringify({
-                'form-name' : form.getAttribute("name"),
-                'g-recaptcha-response' : this.state.recaptcha,
-                ...this.state
-            })
-        })
-        .then(() => {
-            console.log('success:: ', response)
-            this.setState({
-                status: "success",
-            })
-        })
-        .catch(error => {
-            console.log('error:: ', error)
-            this.setState({
-                status: "failure",
-            })
-        });
-    
-          e.preventDefault();
-    }
-
     onSubmit = (event) => {        
-        
-
         if (this.state.expired === false) {
             const form = event.target
             const axiosOptions = {
                 // url: this.props.location.pathname,
                 url: "/",
                 method: "post",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                config : {headers: { "Content-Type": "application/x-www-form-urlencoded" }},
                 data: qs.stringify({
                     'form-name' : form.getAttribute("name"),
                     'g-recaptcha-response' : this.state.recaptcha,
@@ -93,6 +65,7 @@ class Contact extends Component {
             }
             
             console.log(form)
+            console.log(form.getAttribute("name"))
             console.log(axiosOptions)
     
             axios(axiosOptions)
@@ -108,6 +81,28 @@ class Contact extends Component {
                         status: "failure",
                     })
                 })
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: qs.stringify({
+                    'form-name' : form.getAttribute("name"),
+                    'g-recaptcha-response' : this.state.recaptcha,
+                    ...this.state
+                })
+            })
+            .then((response) => {
+                console.log('success:: ', response)
+                this.setState({
+                    status: "success",
+                })
+            })
+            .catch(error => {
+                console.log('error:: ', error)
+                this.setState({
+                    status: "failure",
+                })
+            });
         }
         event.preventDefault();
     }
@@ -173,16 +168,16 @@ class Contact extends Component {
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </Text>
                     <Form
-                        onSubmit={this.onSubmit2}
+                        onSubmit={this.onSubmit}
                         action="/contact"
-                        name="ContactForm2"
+                        name="ContactForm3"
                         method="POST"
                         data-netlify="true"
                         data-netlify-recaptcha="true"
                         data-netlify-honeypot="bot-field">
                         
                         <input type="hidden" name="bot-field" />
-                        <input type="hidden" name="form-name" value="ContactForm2" />
+                        <input type="hidden" name="form-name" value="ContactForm3" />
                         <FormField name="name" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
                         <FormField name="reason" label="Why?" component={Select} value={this.state.select} options={selectOptions} onChange={this.onSelectChange} />
