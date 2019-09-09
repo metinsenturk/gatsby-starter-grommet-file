@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { FormField, TextInput, TextArea, Button, Markdown, Anchor } from 'grommet'
 import { Box, Select, Heading, Text, Form, } from 'grommet'
 import { Previous } from "grommet-icons"
+import ReCaptcha from "react-google-recaptcha"
 import SEO from '../components/seo/seo';
 import { InternalLink } from '../components/internal/internal'
-import ReCaptcha from "react-google-recaptcha"
 
 const axios = require('axios');
 const qs = require('query-string');
@@ -15,76 +15,53 @@ class Contact extends Component {
         this.state = {
             status: "ready", /* ready || success || failure */
             error: "",
-            fullname: "",
-            reason: "Discussion",
-            email: "",
-            message: "",
             recaptcha: null,
             expired: false
         }
     }
 
-    onNameChange = (event) => {
-        this.setState({ fullname: event.target.value })
-    }
-
-    onReasonChange = (event) => {
-        this.setState({ reason: event.value })
-    }
-
-    onEmailChange = (event) => {
-        this.setState({ email: event.target.value })
-    }
-
-    onMessageChange = (event) => {
-        this.setState({ message: event.target.value })
-    }
-
     handleRecaptcha = (value) => {
-        console.log(value)
         this.setState({recaptcha: value})
         if (value === null) {
-            console.log('expired!')
             this.setState({ expired: true })
         };
     }
 
     onSubmit = (event) => {
         event.preventDefault(); 
-        if (this.state.expired === false) {
+        if (this.state.recaptcha !== null) {
             const form = event.target
-            const data = qs.stringify({
-                "form-name" : form.getAttribute("name"),
-                "g-recaptcha-response" : this.state.recaptcha,
-                ...event.value
-            })
 
             const axiosOptions = {
-                // url: this.props.location.pathname,
                 url: form.getAttribute("action"),
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                data: data,
+                data: qs.stringify({
+                    "form-name" : form.getAttribute("name"),
+                    "g-recaptcha-response" : this.state.recaptcha,
+                    ...event.value
+                }),
             }
             
-            console.log(form.getAttribute("name"))
-            console.log(form.getAttribute("action"))
-            console.log(axiosOptions)
-            
-            // trial 1
             axios(axiosOptions)
                 .then(response => {
-                    console.log('success:: ', response)
                     this.setState({
                         status: "success",
+                        ...qs.parse(response.config.data)
                     })
                 })
-                .catch(err => {
-                    console.log('error:: ', err)
+                .catch(error => {
+                    console.log(error)
                     this.setState({
                         status: "failure",
                     })
                 })
+        } 
+        else {
+            this.setState({
+                error: "recaptcha failed.",
+                status: "failure",
+            })
         }
     }
 
@@ -114,8 +91,8 @@ class Contact extends Component {
         }
 
         const success = () => {
-            var { status, name, reason, email, message } = this.state
-            const CONTENT = `\`\`\`json \n${JSON.stringify({ status, name, reason, email, message }, null, 2)}\`\`\``
+            var { status, fullname, reason, email, message } = this.state
+            const CONTENT = `\`\`\`json \n${JSON.stringify({ status, fullname, reason, email, message }, null, 2)}\`\`\``
 
             return (
                 <Box basis="large" fill={true}>
@@ -150,8 +127,8 @@ class Contact extends Component {
                     </Text>
                     <Form
                         onSubmit={this.onSubmit}
-                        action="/contact"
-                        name="ContactForm3"
+                        action="/contact/"
+                        name="ContactForm"
                         method="POST"
                         data-netlify="true"
                         data-netlify-recaptcha="true"
@@ -159,12 +136,11 @@ class Contact extends Component {
                         >
                         
                         <input type="hidden" name="bot-field" />
-                        <input type="hidden" name="form-name" value="ContactForm3" />
-                        <FormField name="fullname" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} onChange={this.onNameChange} />
-                        <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.onEmailChange} />
-                        <FormField name="reason" label="Why?" component={Select} value={this.state.reason} options={reasonOptions} onChange={this.onReasonChange} />
-                        <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} onChange={this.onMessageChange} />
-                        <div data-netlify-recaptcha="true"></div>
+                        <input type="hidden" name="form-name" value="ContactForm" />
+                        <FormField name="fullname" label="Full Name" component={TextInput} placeholder="John Applessed" required={true} />
+                        <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} />
+                        <FormField name="reason" label="Why?" component={Select} value={reasonOptions[2]} options={reasonOptions} />
+                        <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} />
                         <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} />
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
                             <Button label="Send" type="submit" primary={true}></Button>

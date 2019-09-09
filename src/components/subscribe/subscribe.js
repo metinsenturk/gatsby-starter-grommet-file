@@ -23,16 +23,17 @@ export default class Subscribe extends React.Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        fetch("/", {
+        fetch(event.target.getAttribute('action'), {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "contact", ...this.state })
+            body: encode({ "form-name": event.target.getAttribute('name'), ...event.value })
         }).then(
             this.setState({ status: "success" })
         ).catch(error =>
             this.setState({ status: "failure", error: error })
         );
     }
+
     render() {
         // eslint-disable-next-line
         const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -55,9 +56,16 @@ export default class Subscribe extends React.Component {
 
         const ready = () => {
             return (
-                <Form name="SubscribeForm" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={this.onFormSubmit}>
-                    <FormField label="Email" help="Provide a valid email address." placeholder="john@apple.com" component={TextInput} required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} onChange={this.handleChange}>
-                    </FormField>
+                <Form 
+                    name="SubscribeForm" 
+                    action="/" 
+                    data-netlify="true" 
+                    data-netlify-recaptcha="true" 
+                    data-netlify-honeypot="bot-field" 
+                    onSubmit={this.onFormSubmit}>
+                    <FormField name="email" label="Email" help="Provide a valid email address." placeholder="john@apple.com" component={TextInput} required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} />
+                    <input type="hidden" name="bot-field" />
+                    <div data-netlify-recaptcha="true"></div>
                     <Button type="submit" primary={true} label="Send" icon={<Send />} />
                 </Form>
             )
