@@ -23,6 +23,7 @@ A demo of this starter is hosted in [here]().
 - Sitemap generation
 - Offline Support
 - Netlify form tags for site forms
+- Google recaptcha v2 for forms
 - Social share buttons with `react-share`
 - Own your content. Host your content in Markdown files.
 - Images handled by `gatsby-image` for albums and markdown files.

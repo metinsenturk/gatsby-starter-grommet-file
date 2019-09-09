@@ -141,7 +141,7 @@ class Contact extends Component {
                         <FormField name="email" label="Email" component={TextInput} placeholder="john@apple.com" required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} />
                         <FormField name="reason" label="Why?" component={Select} value={reasonOptions[2]} options={reasonOptions} />
                         <FormField name="message" label="Message" component={TextArea} placeholder="type here" rows="5" required={true} />
-                        <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} />
+                        <ReCaptcha sitekey={process.env.GATSBY_RECAPTCHA_KEY} onChange={this.handleRecaptcha} theme="dark"/>
                         <Box pad={{ vertical: 'medium' }} direction="row" justify="end">
                             <Button label="Send" type="submit" primary={true}></Button>
                         </Box>

@@ -64,6 +64,7 @@ export default class Subscribe extends React.Component {
                     data-netlify-honeypot="bot-field" 
                     onSubmit={this.onFormSubmit}>
                     <FormField name="email" label="Email" help="Provide a valid email address." placeholder="john@apple.com" component={TextInput} required={true} validate={{ regexp: emailRegex, message: "please provide an email." }} />
+                    <input type="hidden" name="form-name" value="SubscribeForm" />
                     <input type="hidden" name="bot-field" />
                     <div data-netlify-recaptcha="true"></div>
                     <Button type="submit" primary={true} label="Send" icon={<Send />} />
