@@ -60,7 +60,7 @@ export default class Subscribe extends React.Component {
                     name="SubscribeForm" 
                     method="POST"
                     onSubmit={this.onFormSubmit}
-                    action="/" 
+                    action="/blog" 
                     data-netlify="true" 
                     data-netlify-recaptcha="true" 
                     data-netlify-honeypot="bot-field" 

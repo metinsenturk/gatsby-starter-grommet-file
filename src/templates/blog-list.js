@@ -5,6 +5,7 @@ import { Heading, Box, Text } from 'grommet'
 import { CardLink } from '../components/internal/internal'
 import Pagination from '../components/pagination/pagination';
 import SEO from '../components/seo/seo';
+import Subscribe from '../components/subscribe/subscribe'
 
 class Blog extends Component {
   render() {
@@ -43,6 +44,7 @@ class Blog extends Component {
             </Box>
           ))}          
           <Pagination pageInfo={pageInfo} pathname={pathname} />
+          <Subscribe />
         </Box>
       </>
     )

@@ -10,7 +10,6 @@ import { createGlobalStyle } from 'styled-components'
 import Header from '../header/header'
 import Profile from '../profile/profile'
 import Footer from '../footer/footer'
-import Subscribe from '../subscribe/subscribe';
 
 const GlobalSyle = createGlobalStyle`
   body {
@@ -103,7 +102,6 @@ class Layout extends React.Component {
                         </Box>
                         <Box as="aside" basis="medium" gap="medium">
                           <Profile />
-                          <Subscribe />
                           <Footer />
                         </Box>
                       </Box>
