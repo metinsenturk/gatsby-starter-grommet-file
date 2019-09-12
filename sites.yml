@@ -1,0 +1,29 @@
+- title: Grommet File 
+
+  # this is the URL that is linked from the showcase
+  main_url: https://grommet-file.netlify.com/
+
+  # this URL is used to generate a screenshot
+  url: https://grommet-file.netlify.com/
+
+  # optional: for open-source sites, this URL points to the repo that powers the site
+  source_url: https://github.com/metinsenturk/gatsby-starter-grommet-file
+
+  # optional: short paragraph describing the content and/or purpose of the site that will appear in the modal detail view and permalink views for your site
+  description: >
+    {titleofthesite} An easy Gatsby starter with Grommet V2 and Markdown files. Easy to edit and much more. 
+
+  # You can list as many categories as you want here. Check list of Categories below in this doc!
+  # If you'd like to create a new category, simply list it here.
+  categories:
+    - Blog
+    - Album
+    - Documentation
+    - Portfolio
+
+  # Add the name (developer or company) and URL (e.g. Twitter, GitHub, portfolio) to be used for attribution
+  built_by: Metin Senturk
+  built_by_url: https://metinsenturk.me
+
+  # leave as false, the Gatsby site review board will choose featured sites quarterly
+  featured: false

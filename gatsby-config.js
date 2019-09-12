@@ -2,8 +2,9 @@ module.exports = {
   pathPrefix: `/`,
   siteMetadata: {
     // basic
-    pathPrefix: '/',
-    siteUrl: 'http://localhost:8000', 
+    // pathPrefix: '/',
+    siteUrl: 'https://grommet-file.netlify.com/', 
+    sourceUrl: 'https://github.com/metinsenturk/gatsby-starter-grommet-file',
     siteLanguage: 'en',
     author: 'Metin Senturk',
     description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -11,6 +12,34 @@ module.exports = {
     aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
     ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
     title: "MS",
+    // jsonld
+    titleAlt: '',
+    headline: '',
+    favicon: '', 
+    shortName: '', // shortname for manifest. MUST be shorter than 12 characters
+    author: 'Metin Senturk', // Author for schemaORGJSONLD
+    themeColor: '#3D63AE',
+    headerColor: 'accent-4', // neutral-1, status-1, etc.
+    backgroundColor: '#EBEDF2',
+    
+    // fb
+    ogLanguage: 'en_US',
+    
+    // other
+    social: {
+      facebook: "mtnSntrk",
+      twitter: "machinmetosh",
+      linkedin: "metinsenturk",
+      telegram: "@metinsenturk",
+      email: "metinsenturk@me.com",
+      github: "metinsenturk"
+    },
+    indexText: {
+      enabled: true,
+      picture: "random", // random, daily, weekly
+      title: 'Hi There.',
+      description: 'Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+    },
     metaDefault: {
       title: 'MS',
       description: '',
@@ -26,41 +55,33 @@ module.exports = {
       description: '',
       banner: 'gatsby-icon.png',
     },
-    // jsonld
-    titleAlt: '',
-    headline: '',
-    favicon: '', 
-    shortName: '', // shortname for manifest. MUST be shorter than 12 characters
-    author: 'Metin Senturk', // Author for schemaORGJSONLD
-    themeColor: '#3D63AE',
-    backgroundColor: '#EBEDF2',
-    
-    // fb
-    ogLanguage: 'en_US',
-    
-    // other
-    social: {
-      facebook: "mtnSntrk",
-      twitter: "machinmetosh",
-      linkedin: "metinsenturk",
-      telegram: "@metinsenturk",
-      email: "metinsenturk@me.com",
-      github: "metinsenturk"
-    },
-    sourceUrl: '',
-    indexText: {
-      enabled: true,
-      picture: "random", // random, daily, weekly
-      title: 'Hi There.',
-      description: 'Cras nec lectus nulla. Morbi vel venenatis lorem, vitae faucibus mi. Vivamus est mi, faucibus ut nibh ut, pharetra volutpat risus. Quisque auctor mi eu semper aliquam. Maecenas pretium libero enim, eu suscipit massa sollicitudin ac. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
-    },
-    headerColor: 'accent-4', // neutral-1, status-1, etc.
   },
   plugins: [
     'gatsby-plugin-react-helmet',
     `gatsby-plugin-sharp`,
     'gatsby-transformer-sharp',
     'gatsby-transformer-json',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `album`,
+        path: `${__dirname}/content/album`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `blog`,
+        path: `${__dirname}/content/blog`,
+      },
+    },
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -91,6 +112,18 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Grommet-File',
+        short_name: `Metin's Personal Blog` ,
+        start_url: '/',
+        background_color: '#663399',
+        theme_color: '#663399',
+        display: 'minimal-ui',
+        icon: 'src/assets/gatsby-icon.png', 
+      },
+    },
+    {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         trackingIds: [
@@ -106,39 +139,6 @@ module.exports = {
           //exclude: ["/preview/**", "/do-not-track/me/too/"],
         },
       }
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/assets`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `album`,
-        path: `${__dirname}/content/album`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `blog`,
-        path: `${__dirname}/content/blog`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: 'metinsenturk.github.io',
-        short_name: `Metin's Personal Blog` ,
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'src/assets/gatsby-icon.png', 
-      },
     },
     'gatsby-plugin-netlify',
     'gatsby-plugin-robots-txt',

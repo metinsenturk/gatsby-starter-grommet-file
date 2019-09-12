@@ -1,8 +1,10 @@
-# Gatsby Starter Grommet File
+# Gatsby Starter Grommet File :pushpin::closed_book::grapes:
 
-Blogging is very easy with Gatsby. Start your blog with this template within just a few steps.
+Blogging is very easy with GatsbyJs. Start your blog with this template within just a few steps.
 
-A demo of this starter is hosted in [here]().
+A demo of this starter is hosted in [here](https://grommet-file.netlify.com/).
+
+<span style="display:block;text-align:center">![Index page of Grommet File.](./content/readme/index-page.gif)</span>
 
 ## Features
 
@@ -11,7 +13,7 @@ A demo of this starter is hosted in [here]().
 - [Grommet V2](https://v2.grommet.io/)
 - A simple landing page, blog, and gallery pages.
 - Pagination
-- Multi theme support, light, dark, and more.
+- Multi theme support, light, **dark**, and more.
 - SEO friendly design
     - JSON-LD for Google Breadcrumbs
     - JSON-LD for Google Article/ Websites
@@ -32,7 +34,7 @@ A demo of this starter is hosted in [here]().
 
 ## Getting Started & Configure
 
-To start, first clone the repository, then edit the the siteMetadata in `gatsby.config.js`.
+To start with, first clone the repository, then edit the the siteMetadata in `gatsby.config.js`.
 
 ### Getting Started
 
@@ -66,10 +68,22 @@ yarn develop
 
 ### Publish
 
+I use Netlify for publishing. Netlify pulls the source and builds the source with `gatsby build`. If you have your own hosting service or planing to use somewhere else, you can get the built version of the files with following command.
+
 ``` sh
 yarn build
 ```
 
+#### A note on Netlify Publish
+
+I use .env file for custom recaptcha. While developing, your local `.env.*` file will be used to read and the key `GATSBY_RECAPTCHA_KEY`. However, when deploying on Netlify, you need to create an environment variable and configure your build accordingly. In your site settings, you need to do the following.
+
+1. You should create an `Environment Variable` with your site-key. For example, `GATSBY_RECAPTCHA_KEY` and set it's value to your key.
+2. The `Build Command` in Netlify should be as following.
+
+``` sh
+echo GATSBY_RECAPTCHA_KEY=$GATSBY_RECAPTCHA_KEY >> .env.production && gatsby build
+```
 ### Configure
 
 The main configuration of this site is handled by `gatsby-config.js` in `siteMetadata` object. You can control sections and general texts around the site without getting into the code. For example, to change the default theme
@@ -77,11 +91,35 @@ The main configuration of this site is handled by `gatsby-config.js` in `siteMet
 ``` js
 siteMetadata: {
     pathPrefix: '/',
-    siteUrl: 'http://localhost:8000', 
+    siteUrl: 'https://grommet-file.netlify.com/', 
+    sourceUrl: 'https://github.com/metinsenturk/gatsby-starter-grommet-file',
     siteLanguage: 'en',
     author: 'Metin Senturk',
-    description: ``,
+    description: `Awesome gatsby starter with Grommet V2 and more!`,
     title: "MS",
+    titleAlt: '',
+    headline: '',
+    favicon: '', 
+    shortName: '', 
+    author: 'Metin Senturk', 
+    themeColor: '#3D63AE',
+    headercolor: 'accent-4' 
+    backgroundColor: '#EBEDF2',
+    ogLanguage: 'en_US',
+    social: {
+      facebook: "MtnSntrk",
+      twitter: "machinmetosh",
+      linkedin: "metinsenturk",
+      telegram: "metinsenturk",
+      email: "metinsenturk@me.com",
+      github: "metinsenturk"
+    },
+    indexText: {
+      enabled: true,
+      picture: "random", 
+      title: 'Hi There.',
+      description: ''
+    },
     metaDefault: {
       title: 'MS',
       description: '',
@@ -97,30 +135,6 @@ siteMetadata: {
       description: '',
       banner: 'gatsby-icon.png',
     },
-    titleAlt: '',
-    headline: '',
-    favicon: '', 
-    shortName: '', 
-    author: 'Metin Senturk', 
-    themeColor: '#3D63AE',
-    backgroundColor: '#EBEDF2',
-    ogLanguage: 'en_US',
-    social: {
-      facebook: "MtnSntrk",
-      twitter: "machinmetosh",
-      linkedin: "metinsenturk",
-      telegram: "metinsenturk",
-      email: "metinsenturk@me.com",
-      github: "metinsenturk"
-    },
-    sourceUrl: '',
-    indexText: {
-      enabled: true,
-      picture: "random", 
-      title: 'Hi There.',
-      description: ''
-    },
-    headercolor: 'accent-4' 
   }
 ```
 
@@ -132,6 +146,16 @@ The following keys in the above object are used for following purposes.
 - `indexText`: to show the text on top of the image, switch `enabled` to `true`. `picture` is retrieved from Unsplash, you can implement your own, or use a static image from Gatsby's site images, I preferred the Unplash random api. Other options are `daily`, `weekly`.
 - `headercolor`: The main/ light theme of the header color. Changing this will effect the reverse colors, and the colors of dark theme as well. Full color options are available at Grommet's [site](https://v2.grommet.io/components#Color).
 - `social`: The social usernames. This will be used in social links and share buttons. No need to use @, #, etc.
+
+## Contribution and Issues
+
+Please open up an issue follow general contribution guidelines to contibute. Contact with me at anytime!
+
+## Thank You!
+
+Thank all of these people for their open source content and their efforts!
+
+[@saracmert](https://github.com/saracmert):star:, [@Ganevru](https://github.com/Ganevru), [@Netlify Community](https://community.netlify.com/), [@Grommet](https://github.com/grommet) and all others in WWW.
 
 ## Author
 
