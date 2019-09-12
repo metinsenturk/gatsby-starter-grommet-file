@@ -1,10 +1,15 @@
 # Gatsby Starter Grommet File :pushpin::closed_book::grapes:
 
+<!-- Markdown snippet -->
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/metinsenturk/gatsby-starter-grommet-file)
+
 Blogging is very easy with GatsbyJs. Start your blog with this template within just a few steps.
 
 A demo of this starter is hosted in [here](https://grommet-file.netlify.com/).
 
-<span style="display:block;text-align:center">![Index page of Grommet File.](./content/readme/index-page.gif)</span>
+<p align="center">
+  <img src="./content/readme/index-page.gif" alt="Index page of Grommet File.">
+</p>
 
 ## Features
 
