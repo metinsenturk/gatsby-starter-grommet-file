@@ -10,7 +10,10 @@ const Footer = () => (
                 let { author, sourceUrl } = site.siteMetadata;
                 return (
                     <Box as="footer" pad={{ top: "small" }} border={{ size: "xsmall", side: "top" }}>
-                        <Text size="small"> Made with {'\u2665'} by {author}. {'\u00A9'} All rights reserved. Open sourced at <Anchor target="_blank" href={sourceUrl} label="here" alt="Github source url"/>.</Text>
+                        <Text size="small"> Made with {'\u2665'} by {author}. {'\u00A9'} All rights reserved. The code is open sourced 
+                            <Anchor target="_blank" href={sourceUrl} label="at Github." alt="Github source url"/>
+                            .
+                        </Text>
                     </Box>
                 )
             }
