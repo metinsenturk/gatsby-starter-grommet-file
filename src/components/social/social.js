@@ -11,11 +11,11 @@ const Social = () => (
                 const { social } = site.siteMetadata
                 return (
                     <Box gap="xsmall" pad={{ vertical: "small" }} direction="row-responsive">
-                        <Anchor target="_blank" href={`//linkedin.com/in/${social.linkedin}`} icon={<Linkedin />} />
-                        <Anchor target="_blank" href={`//facebook.com/${social.facebook}`} icon={<Facebook />} />
-                        <Anchor target="_blank" href={`//twitter.com/${social.twitter}`} icon={<Twitter />} />
-                        <Anchor target="_blank" href={`//github.com/${social.github}`} icon={<Github />} />
-                        <Anchor target="_blank" href={`mailto:${social.email}`} icon={<Mail />} />
+                        <Anchor target="_blank" href={`//linkedin.com/in/${social.linkedin}`} icon={<Linkedin />} rel="noopener"/>
+                        <Anchor target="_blank" href={`//facebook.com/${social.facebook}`} icon={<Facebook />} rel="noopener" />
+                        <Anchor target="_blank" href={`//twitter.com/${social.twitter}`} icon={<Twitter />} rel="noopener"/>
+                        <Anchor target="_blank" href={`//github.com/${social.github}`} icon={<Github />} rel="noopener"/>
+                        <Anchor target="_blank" href={`mailto:${social.email}`} icon={<Mail />} rel="noopener"/>
                     </Box>
                 )
             }

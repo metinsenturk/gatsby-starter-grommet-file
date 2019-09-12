@@ -42,17 +42,17 @@ module.exports = {
     },
     metaDefault: {
       title: 'MS',
-      description: '',
+      description: 'My website with my amazing stuff.',
       banner: 'gatsby-icon.png',
     },
     metaBlog: {
       title: 'My Blog',
-      description: '',
+      description: 'The blog. This content is awesome and all about Gatsby & Grommet!',
       banner: 'gatsby-icon.png',
     },
     metaAlbum: {
       title: 'Albums',
-      description: '',
+      description: 'Lovely pictures. Professional grade! From DSLR to iPhone',
       banner: 'gatsby-icon.png',
     },
   },
