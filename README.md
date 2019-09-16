@@ -62,6 +62,11 @@ cd grommet-file
 # install
 yarn install
 ```
+Create `env.*` files and add your google recaptcha sitekey.
+
+``` sh
+echo GATSBY_RECAPTCHA_KEY=$GATSBY_RECAPTCHA_KEY >> .env.development
+```
 
 ### Development
 
