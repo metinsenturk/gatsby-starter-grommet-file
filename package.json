@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Metin Senturk",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "gatsby": "^2.5.0",
     "gatsby-image": "^2.1.0",
     "gatsby-plugin-google-gtag": "^1.0.17",
